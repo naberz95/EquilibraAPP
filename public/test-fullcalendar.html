@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test FullCalendar</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #calendar { max-width: 900px; margin: 0 auto; }
+        .status { padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de FullCalendar</h1>
+    
+    <div id="status" class="status">
+        ⏳ Verificando FullCalendar...
+    </div>
+    
+    <div id="calendar"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.5/locales/es.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusDiv = document.getElementById('status');
+            const calendarEl = document.getElementById('calendar');
+            
+            console.log('Test iniciado');
+            console.log('FullCalendar disponible:', typeof FullCalendar);
+            
+            if (typeof FullCalendar === 'undefined') {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ FullCalendar no se cargó correctamente. Verifica tu conexión a internet.';
+                return;
+            }
+            
+            try {
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ FullCalendar cargado correctamente. Inicializando calendario...';
+                
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'es',
+                    height: 600,
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    events: [
+                        {
+                            title: 'Cita de prueba',
+                            start: '2025-09-25T09:00:00',
+                            end: '2025-09-25T09:45:00',
+                            color: '#28a745'
+                        }
+                    ],
+                    dateClick: function(info) {
+                        alert('Clicked on: ' + info.dateStr);
+                    }
+                });
+                
+                calendar.render();
+                statusDiv.innerHTML = '✅ Calendario inicializado correctamente! Haz clic en una fecha para probar la interacción.';
+                
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ Error al inicializar el calendario: ${error.message}`;
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

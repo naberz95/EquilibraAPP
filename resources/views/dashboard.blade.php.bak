@@ -1,0 +1,391 @@
+@extends('layouts.app')
+
+@section('title', 'Dashboard - EquilibraAPP')
+
+@section('content')
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3><i class="fas fa-brain"></i> Equilibrapp</h3>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="#" data-section="dashboard" class="menu-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="#" data-section="pacientes" class="menu-link"><i class="fas fa-users"></i> Pacientes</a></li>
+        <li><a href="#" data-section="citas" class="menu-link"><i class="fas fa-calendar-alt"></i> Citas</a></li>
+        <li><a href="#" data-section="historias" class="menu-link"><i class="fas fa-file-medical"></i> Historias Clínicas</a></li>
+        <li><a href="#" data-section="pruebas" class="menu-link"><i class="fas fa-clipboard-list"></i> Pruebas</a></li>
+        <li><a href="#" data-section="informes" class="menu-link"><i class="fas fa-chart-bar"></i> Informes</a></li>
+        <li><a href="#" data-section="facturacion" class="menu-link"><i class="fas fa-receipt"></i> Facturación</a></li>
+        <li><a href="#" data-section="configuracion" class="menu-link"><i class="fas fa-cog"></i> Configuración</a></li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <!-- Top Navbar -->
+    <div class="top-navbar">
+        <h4 id="page-title">Dashboard</h4>
+        <div>
+            <span class="me-3">Bienvenido, {{ auth()->user()->nombre }}</span>
+            <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                @csrf
+                <button type="submit" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="content-section active">
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number text-primary">125</div>
+                        <div class="stats-label">Pacientes</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number text-success">12</div>
+                        <div class="stats-label">Citas Hoy</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number text-warning">$3.5M</div>
+                        <div class="stats-label">Facturación</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="stats-card">
+                        <div class="stats-number text-info">8</div>
+                        <div class="stats-label">Pendientes</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Table -->
+            <div class="appointments-table">
+                <div class="table-header">
+                    <h5 class="mb-0">Próximas Citas</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Psicólogo</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan Pérez</td>
+                                <td>Dra. Gómez</td>
+                                <td>2025-09-10</td>
+                                <td>10:00 AM</td>
+                                <td><span class="status-confirmada">Confirmada</span></td>
+                            </tr>
+                            <tr>
+                                <td>María López</td>
+                                <td>Dr. Ruiz</td>
+                                <td>2025-09-10</td>
+                                <td>11:30 AM</td>
+                                <td><span class="status-pendiente">Pendiente</span></td>
+                            </tr>
+                            <tr>
+                                <td>Carlos Martín</td>
+                                <td>Dra. Silva</td>
+                                <td>2025-09-10</td>
+                                <td>2:00 PM</td>
+                                <td><span class="status-confirmada">Confirmada</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pacientes Section -->
+        <div id="pacientes-section" class="content-section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="appointments-table">
+                        <div class="table-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Gestión de Pacientes</h5>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Nuevo Paciente
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-muted">Aquí podrás gestionar todos los pacientes del sistema.</p>
+                            <!-- Aquí irá el CRUD de pacientes -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Citas Section -->
+        <div id="citas-section" class="content-section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="appointments-table">
+                        <div class="table-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Gestión de Citas</h5>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Nueva Cita
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-muted">Calendario y gestión de citas médicas.</p>
+                            <!-- Aquí irá el calendario de citas -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Otras secciones van aquí... -->
+        <div id="historias-section" class="content-section">
+            <div class="appointments-table">
+                <div class="table-header">
+                    <h5 class="mb-0">Historias Clínicas</h5>
+                </div>
+                <div class="p-4">
+                    <p class="text-muted">Gestión de historias clínicas y expedientes médicos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="pruebas-section" class="content-section">
+            <div class="appointments-table">
+                <div class="table-header"><h5 class="mb-0">Pruebas Psicológicas</h5></div>
+                <div class="p-4"><p class="text-muted">Repositorio y aplicación de pruebas psicológicas.</p></div>
+            </div>
+        </div>
+
+        <div id="informes-section" class="content-section">
+            <div class="appointments-table">
+                <div class="table-header"><h5 class="mb-0">Informes y Reportes</h5></div>
+                <div class="p-4"><p class="text-muted">Generación de reportes estadísticos y análisis.</p></div>
+            </div>
+        </div>
+
+        <div id="facturacion-section" class="content-section">
+            <div class="appointments-table">
+                <div class="table-header"><h5 class="mb-0">Facturación</h5></div>
+                <div class="p-4"><p class="text-muted">Control de facturación y pagos.</p></div>
+            </div>
+        </div>
+
+        <div id="configuracion-section" class="content-section">
+            <div class="appointments-table">
+                <div class="table-header"><h5 class="mb-0">Configuración del Sistema</h5></div>
+                <div class="p-4"><p class="text-muted">Configuraciones generales del sistema.</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // SPA Navigation
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const contentSections = document.querySelectorAll('.content-section');
+    const pageTitle = document.getElementById('page-title');
+
+    // Navigation titles
+    const titles = {
+        'dashboard': 'Dashboard',
+        'pacientes': 'Pacientes',
+        'citas': 'Citas',
+        'historias': 'Historias Clínicas',
+        'pruebas': 'Pruebas',
+        'informes': 'Informes',
+        'facturacion': 'Facturación',
+        'configuracion': 'Configuración'
+    };
+
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const section = this.getAttribute('data-section');
+            
+            // Remove active class from all links
+            menuLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Hide all content sections
+            contentSections.forEach(s => s.classList.remove('active'));
+            
+            // Show target section
+            const targetSection = document.getElementById(section + '-section');
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update page title
+            pageTitle.textContent = titles[section] || 'Dashboard';
+        });
+    });
+});
+</script>
+
+<div class="row">
+    <!-- Tarjeta de Bienvenida -->
+    <div class="col-12 mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h4 class="text-primary">¡Bienvenido/a, {{ auth()->user()->nombre }}!</h4>
+                <p class="text-muted mb-0">
+                    Rol: <strong>{{ auth()->user()->role->nombre_rol ?? 'Usuario' }}</strong> | 
+                    Último acceso: {{ now()->format('d/m/Y H:i') }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Estadísticas Rápidas -->
+    <div class="col-md-3 mb-4">
+        <div class="card text-center border-0 shadow-sm">
+            <div class="card-body">
+                <div class="text-primary mb-2">
+                    <i class="display-4">👥</i>
+                </div>
+                <h5 class="card-title">Pacientes</h5>
+                <h3 class="text-primary">0</h3>
+                <small class="text-muted">Total registrados</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="card text-center border-0 shadow-sm">
+            <div class="card-body">
+                <div class="text-success mb-2">
+                    <i class="display-4">📅</i>
+                </div>
+                <h5 class="card-title">Citas Hoy</h5>
+                <h3 class="text-success">0</h3>
+                <small class="text-muted">{{ now()->format('d/m/Y') }}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="card text-center border-0 shadow-sm">
+            <div class="card-body">
+                <div class="text-warning mb-2">
+                    <i class="display-4">📋</i>
+                </div>
+                <h5 class="card-title">Historias</h5>
+                <h3 class="text-warning">0</h3>
+                <small class="text-muted">Historias clínicas</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="card text-center border-0 shadow-sm">
+            <div class="card-body">
+                <div class="text-info mb-2">
+                    <i class="display-4">👨‍⚕️</i>
+                </div>
+                <h5 class="card-title">Psicólogos</h5>
+                <h3 class="text-info">0</h3>
+                <small class="text-muted">Profesionales activos</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Acciones Rápidas -->
+    <div class="col-md-6 mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">🚀 Acciones Rápidas</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <strong>👤 Registrar Nuevo Paciente</strong>
+                        <small class="d-block text-muted">Agregar un nuevo paciente al sistema</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <strong>📅 Agendar Cita</strong>
+                        <small class="d-block text-muted">Programar nueva cita médica</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <strong>🔍 Buscar Paciente</strong>
+                        <small class="d-block text-muted">Encontrar paciente por nombre o cédula</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0">
+                        <strong>📊 Ver Reportes</strong>
+                        <small class="d-block text-muted">Estadísticas y reportes del sistema</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Citas Próximas -->
+    <div class="col-md-6 mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">📅 Próximas Citas</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center text-muted py-4">
+                    <i class="display-4 text-muted">📅</i>
+                    <p class="mt-2">No hay citas programadas para hoy</p>
+                    <small>Las citas aparecerán aquí cuando sean agendadas</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información del Sistema -->
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Estado del Sistema</h6>
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <small class="text-muted">Versión</small>
+                        <div><strong>MVP 1.0</strong></div>
+                    </div>
+                    <div class="col-md-3">
+                        <small class="text-muted">Base de Datos</small>
+                        <div><span class="badge bg-success">Conectada</span></div>
+                    </div>
+                    <div class="col-md-3">
+                        <small class="text-muted">Último Backup</small>
+                        <div><strong>Pendiente</strong></div>
+                    </div>
+                    <div class="col-md-3">
+                        <small class="text-muted">Usuarios Activos</small>
+                        <div><strong>1</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
